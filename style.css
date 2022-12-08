@@ -1,10 +1,10 @@
 * {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .page {
   margin: 0;
-  padding: 0;
+  padding: 0 19px;
   background-color: #000000;
   color: white;
   font-family: "Inter";
@@ -17,11 +17,25 @@
   border-bottom: 1px solid #545454;
 }
 
+@media screen and (max-width: 685px) {
+  .header {
+    margin-top: 28px;
+  }
+}
+
 .header__logo {
   background-image: url("./image/logo-min.svg");
+  background-size: contain;
   background-repeat: no-repeat;
   min-width: 142px;
   min-height: 33px;
+}
+
+@media screen and (max-width: 685px) {
+  .header__logo {
+    min-width: 104px;
+    min-height: 25px;
+  }
 }
 
 .profile {
@@ -30,6 +44,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 685px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .profile__image {
@@ -43,6 +64,13 @@
   margin-right: auto;
 }
 
+@media screen and (max-width: 685px) {
+  .profile__info {
+    margin: 0;
+    text-align: center;
+  }
+}
+
 .profile__title-container {
   display: flex;
 }
@@ -53,6 +81,13 @@
   line-height: 48px;
   margin-top: 22px;
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .profile__title {
+    font-size: 27px;
+    line-height: 33px;
+  }
 }
 
 .profile__edit-button {
@@ -69,12 +104,26 @@
   align-self: center;
 }
 
+@media screen and (max-width: 500px) {
+  .profile__edit-button {
+    min-width: 18px;
+    min-height: 18px;
+  }
+}
+
 .profile__subtitle {
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   margin-top: 16px;
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .profile__subtitle {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
 
 .profile__add-button {
@@ -89,13 +138,27 @@
   background-position: center;
 }
 
+@media screen and (max-width: 685px) {
+  .profile__add-button {
+    margin-top: 36px;
+    width: 100%;
+  }
+}
+
 .elements {
   display: grid;
   gap: 20px 17px;
-  grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+  grid-template-columns: repeat(auto-fill, 282px);
+  justify-content: center;
   max-width: 880px;
   margin: 48px auto 0;
   color: #000000;
+}
+
+@media screen and (max-width: 685px) {
+  .elements {
+    margin-top: 36px;
+  }
 }
 
 .element {
@@ -137,8 +200,14 @@
 }
 
 .footer {
-    max-width: 880px;
-    margin: 68px auto 0;
+  max-width: 880px;
+  margin: 68px auto 60px;
+}
+
+@media screen and (max-width: 685px) {
+  .footer {
+    margin: 48px auto 36px;
+  }
 }
 
 .footer__paragraph {
@@ -146,4 +215,11 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+}
+
+@media screen and (max-width: 685px) {
+  .footer__paragraph {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
