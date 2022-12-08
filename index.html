@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./vendor/normalize.css">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./vendor/normalize.css" />
+    <link rel="stylesheet" href="./fonts/inter.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body class="page">
+  </head>
+  <body class="page">
     <header class="header">
-        <div class="header__logo"></div>
+      <div class="header__logo"></div>
     </header>
-</body>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__avatar">
+          <img
+            class="profile__image"
+            src="./image/photo profile.jpg"
+            alt="Фото профиля"
+          />
+        </div>
+        <div class="profile__info">
+          <div class="profile__title-container">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button">
+            </button>
+          </div>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+    </main>
+  </body>
 </html>
