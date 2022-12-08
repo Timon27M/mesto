@@ -1,3 +1,9 @@
 .profile__title-container {
     display: flex;
   }
+
+  @media screen and (max-width: 500px) {
+    .profile__title-container {
+      margin-left: 28px;
+    }
+  }

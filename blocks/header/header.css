@@ -4,3 +4,10 @@
     margin: 45px auto 0;
     border-bottom: 1px solid #545454;
   }
+
+  @media screen and (max-width: 685px) {
+    .header {
+      margin-top: 28px;
+      min-height: 56px;
+    }
+  }
