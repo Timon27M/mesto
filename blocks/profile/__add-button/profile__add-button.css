@@ -1,0 +1,11 @@
+.profile__add-button {
+    background: rgba(0, 0, 0, 0);
+    min-width: 150px;
+    min-height: 50px;
+    border: 2px solid #ffffff;
+    padding: 0;
+    align-self: center;
+    background-image: url(./image/Vector-addButton.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
