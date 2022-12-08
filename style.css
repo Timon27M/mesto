@@ -4,7 +4,7 @@
 
 .page {
   margin: 0;
-  padding: 0;
+  padding: 0 ;
   background-color: #000000;
   color: white;
   font-family: "Inter";
@@ -87,4 +87,51 @@
   background-image: url(./image/Vector-addButton.svg);
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.elements {
+  display: grid;
+  gap: 20px 17px;
+  grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+  max-width: 880px;
+  margin: 48px auto 0;
+  color: #000000;
+}
+
+.element {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 361px;
+}
+
+.element__image {
+  width: 282px;
+  height: 282px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.element__info {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.element__paragraph {
+  margin:0 0 0 21px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.element__button {
+  border: none;
+  background-image: url(./image/Vector-like.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 19px;
+  align-self: center;
+  margin-right: 30px;
 }
