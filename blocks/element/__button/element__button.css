@@ -1,6 +1,6 @@
 .element__button {
   border: none;
-  background-image: url(./image/Vector-like.svg);
+  background-image: url(../../../image/Vector-like.svg);
   background-position: center;
   background-repeat: no-repeat;
   min-width: 22px;

@@ -28,12 +28,12 @@ popupSaveButton.addEventListener('click', function () {
     popup.classList.remove("popup__opened");
 })
 
-// function handleFormSubmit (evt) {
-//     evt.preventDefault();
-//     let newAttributeName = popupInputName.getAttribute("value");
-//     let newAttributeDescription = popupInputDescription.getAttribute("value");
-//     profileTitle.textContent = newAttributeName;
-//     profileSubtitle.textContent = newAttributeDescription;
-// }
+function handleFormSubmit (evt) {
+    evt.preventDefault();
+    let newAttributeName = popupInputName.getAttribute("value");
+    let newAttributeDescription = popupInputDescription.getAttribute("value");
+    profileTitle.textContent = newAttributeName;
+    profileSubtitle.textContent = newAttributeDescription;
+}
 
-// popupSaveButton.addEventListener('submit', handleFormSubmit);
+popupSaveButton.addEventListener('submit', handleFormSubmit);

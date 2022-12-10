@@ -5,9 +5,10 @@
   border: 2px solid #ffffff;
   padding: 0;
   align-self: center;
-  background-image: url(./image/Vector-addButton.svg);
+  background-image: url(../../../image/Vector-addButton.svg);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 22px;
 }
 
 .profile__add-button:hover {
@@ -19,5 +20,6 @@
   .profile__add-button {
     margin-top: 36px;
     width: 100%;
+    background-size: 16px;
   }
 }
