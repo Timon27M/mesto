@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Место</title>
   </head>
   <body class="page">
     <header class="header">
@@ -23,77 +23,79 @@
         <div class="profile__info">
           <div class="profile__title-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button class="profile__edit-button" type="button"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <div class="element">
+        <article class="element">
           <img
             class="element__image"
             src="./image/kirill-pershin-1088404-unsplash.jpg"
-            alt="картика"
+            alt="Карачаевск"
           />
           <div class="element__info">
-            <p class="element__paragraph">Карачаевск</p>
-            <button class="element__button"></button>
-          </div>
+            <h2 class="element__paragraph">Карачаевск</h2>
+            <button class="element__button" type="button"></button>
+          </article>
         </div>
-        <div class="element">
-          <img class="element__image" src="./image/гора.png" alt="картика" />
+        <article class="element">
+          <img class="element__image" src="./image/гора.png" alt="Гора Эльбрус" />
           <div class="element__info">
-            <p class="element__paragraph">Гора Эльбрус</p>
-            <button class="element__button"></button>
+            <h2 class="element__paragraph">Гора Эльбрус</h2>
+            <button class="element__button" type="button"></button>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./image/домбай.png" alt="картика" />
+        </article>
+        <article class="element">
+          <img class="element__image" src="./image/домбай.png" alt="Домбай" />
           <div class="element__info">
-            <p class="element__paragraph">Домбай</p>
-            <button class="element__button"></button>
+            <h2 class="element__paragraph">Домбай</h2>
+            <button class="element__button" type="button"></button>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./image/гора.png" alt="картика" />
+        </article>
+        <article class="element">
+          <img class="element__image" src="./image/гора.png" alt="Гора Эльбрус" />
           <div class="element__info">
-            <p class="element__paragraph">Гора Эльбрус</p>
-            <button class="element__button"></button>
+            <h2 class="element__paragraph">Гора Эльбрус</h2>
+            <button class="element__button" type="button"></button>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="./image/домбай.png" alt="картика" />
+        </article>
+        <article class="element">
+          <img class="element__image" src="./image/домбай.png" alt="Домбай" />
           <div class="element__info">
-            <p class="element__paragraph">Домбай</p>
-            <button class="element__button"></button>
+            <h2 class="element__paragraph">Домбай</h2>
+            <button class="element__button" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             class="element__image"
             src="./image/kirill-pershin-1088404-unsplash.jpg"
-            alt="картика"
+            alt="Карачаево-Черкесии"
           />
           <div class="element__info">
-            <p class="element__paragraph">Карачаево-Черкесии</p>
-            <button class="element__button"></button>
+            <h2 class="element__paragraph">Карачаево-Черкесии</h2>
+            <button class="element__button" type="button"></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__paragraph">&copy;2022 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <div class="popup">
+      <form class="popup__form">
       <div class="popup__container">
-        <p class="popup__title">Редактировать профиль</p>
-        <input class="popup__input popup__input-name" type="text" />
-        <input class="popup__input popup__input-description" type="text" />
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__input popup__input_name" type="text" name="popupName" />
+        <input class="popup__input popup__input_description" type="text" name="popupDescription"/>
         <button class="popup__save-button" type="submit">Сохранить</button>
-        <button class="popup__close-button"></button>
+        <button class="popup__close-button" type="button"></button>
       </div>
-    </section>
-    <script src="./script/index.js"></script>
+    </form>
+    </div>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

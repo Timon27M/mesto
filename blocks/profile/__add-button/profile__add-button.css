@@ -3,6 +3,7 @@
   min-width: 150px;
   min-height: 50px;
   border: 2px solid #ffffff;
+  border-radius: 2px;
   padding: 0;
   align-self: center;
   background-image: url(../../../image/Vector-addButton.svg);
