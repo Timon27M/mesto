@@ -31,7 +31,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <article class="element">
+        <!-- <article class="element">
           <img
             class="element__image"
             src="./image/kirill-pershin-1088404-unsplash.jpg"
@@ -41,54 +41,8 @@
             <h2 class="element__paragraph">Карачаевск</h2>
             <button class="element__button" type="button"></button>
           </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./image/гора.png"
-            alt="Гора Эльбрус"
-          />
-          <div class="element__info">
-            <h2 class="element__paragraph">Гора Эльбрус</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./image/домбай.png" alt="Домбай" />
-          <div class="element__info">
-            <h2 class="element__paragraph">Домбай</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./image/гора.png"
-            alt="Гора Эльбрус"
-          />
-          <div class="element__info">
-            <h2 class="element__paragraph">Гора Эльбрус</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./image/домбай.png" alt="Домбай" />
-          <div class="element__info">
-            <h2 class="element__paragraph">Домбай</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./image/kirill-pershin-1088404-unsplash.jpg"
-            alt="Карачаево-Черкесии"
-          />
-          <div class="element__info">
-            <h2 class="element__paragraph">Карачаево-Черкесии</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
+        </article> -->
+        
       </section>
     </main>
     <footer class="footer">
@@ -132,7 +86,7 @@
             name="popupCardLink"
             placeholder="Ссылка на картинку"
           />
-          <button class="popup__save-button" type="submit">Создать</button>
+          <button class="popup__save-button popup__save-button_add-card" type="submit">Создать</button>
         </form>
         <button
           class="popup__close-button popup__close-button_add-card"
@@ -140,5 +94,17 @@
         ></button>
       </div>
     </div>
+    <template id="cardTemplate" class="cardTemplate">
+    <article id="element" class="element">
+      <img
+        class="element__image"
+        alt="Картинка"
+      />
+      <div class="element__info">
+        <h2 class="element__paragraph"></h2>
+        <button class="element__button" type="button"></button>
+      </div>
+    </article>
+    </template>
   </body>
 </html>
