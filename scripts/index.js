@@ -41,6 +41,8 @@ function handleFormSubmit(evt) {
 
 popupForm.addEventListener("submit", handleFormSubmit);
 
+
+// открытие и закрытие popupAddCard
 profileAddButton.addEventListener("click", function () {
   openPopup(popupAddCard);
 });
