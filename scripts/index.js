@@ -7,11 +7,12 @@ let popupForm = popup.querySelector(".popup__form");
 let popupCloseButton = popup.querySelectorAll(".popup__close-button");
 let popupCloseButtonAddCard = document.querySelector(".popup__close-button_add-card");
 let popupCloseButtonEditProfile = popup.querySelector(".popup__close-button_edit-profile");
-let profile = popupAddCard.querySelector(".profile");
+let profile = document.querySelector(".profile");
 let profileEditButton = profile.querySelector(".profile__edit-button");
 let profileAddButton = profile.querySelector(".profile__add-button");
 let profileTitle = profile.querySelector(".profile__title");
 let profileSubtitle = profile.querySelector(".profile__subtitle");
+
 
 function openPopup(popupName) {
   popupName.classList.add("popup_opened");
