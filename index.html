@@ -30,20 +30,7 @@
         </div>
         <button class="profile__add-button" type="button"></button>
       </section>
-      <section class="elements">
-        <!-- <article class="element">
-          <img
-            class="element__image"
-            src="./image/kirill-pershin-1088404-unsplash.jpg"
-            alt="Карачаевск"
-          />
-          <div class="element__info">
-            <h2 class="element__paragraph">Карачаевск</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article> -->
-        
-      </section>
+      <section class="elements"></section>
     </main>
     <footer class="footer">
       <p class="footer__paragraph">&copy;2022 Mesto Russia</p>
@@ -86,7 +73,12 @@
             name="popupCardLink"
             placeholder="Ссылка на картинку"
           />
-          <button class="popup__save-button popup__save-button_add-card" type="submit">Создать</button>
+          <button
+            class="popup__save-button popup__save-button_add-card"
+            type="submit"
+          >
+            Создать
+          </button>
         </form>
         <button
           class="popup__close-button popup__close-button_add-card"
@@ -95,16 +87,14 @@
       </div>
     </div>
     <template id="cardTemplate" class="cardTemplate">
-    <article id="element" class="element">
-      <img
-        class="element__image"
-        alt="Картинка"
-      />
-      <div class="element__info">
-        <h2 class="element__paragraph"></h2>
-        <button class="element__button" type="button"></button>
-      </div>
-    </article>
+      <article id="element" class="element">
+        <img class="element__image" alt="Картинка" />
+        <div class="element__info">
+          <h2 class="element__paragraph"></h2>
+          <button class="element__button" type="button"></button>
+        </div>
+        <button type="button" class="element__button-delete"></button>
+      </article>
     </template>
   </body>
 </html>
