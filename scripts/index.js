@@ -10,6 +10,10 @@ let popupCloseButtonAddCard = popupAddCard.querySelector(".popup__close-button_a
 let popupSaveButtonAddCard = popupAddCard.querySelector(".popup__save-button_add-card");
 let popupInputCardName = popupAddCard.querySelector(".popup__input_card_name");
 let popupInputCardLink = popupAddCard.querySelector(".popup__input_card_link");
+let popupOpenCard = document.querySelector(".popup__open-card");
+let popupCloseButtonOpenCard = popupOpenCard.querySelector(".popup__close-button_open-card");
+let popupOpenCardImage = popupOpenCard.querySelector(".popup__image");
+let popupOpenCardNameImage = popupOpenCard.querySelector(".popup__name-image");
 let profile = document.querySelector(".profile");
 let profileEditButton = profile.querySelector(".profile__edit-button");
 let profileAddButton = profile.querySelector(".profile__add-button");
@@ -19,15 +23,14 @@ let sectionCards = document.querySelector(".elements");
 let cardTemplate = document.querySelector("#cardTemplate");
 
 
-
 // функция открытия попапа
 function openPopup(popupName) {
   popupName.classList.add("popup_opened");
-  popupInputName.value = profileTitle.textContent;
-  popupInputDescription.value = profileSubtitle.textContent;
 }
 profileEditButton.addEventListener("click", function () {
   openPopup(popupEditProfile);
+  popupInputName.value = profileTitle.textContent;
+  popupInputDescription.value = profileSubtitle.textContent;
 });
 // функция закрытия попапа
 function closePopup(popupName) {
@@ -92,27 +95,47 @@ function ButtonLikeActive(event) {
   likeButtonTarget.classList.toggle("element__button_active");
 }
 
+// функция удаления карточки
 function deleteCard(buttonDelete) {
-  console.log(buttonDelete);
   const buttonDeleteTarget = buttonDelete.target;
+
   const elementCard = buttonDeleteTarget.closest(".element");
   elementCard.remove();
 }
 
+
+
 // функция добавления карточек при загрузке
-function addCardsOnLoad(nameCards, linkCards) {
+function addCardsOnLoad(textCard, linkImage) {
   const cardContent = cardTemplate.content;
   const cardsElement = cardContent.cloneNode(true);
   const likeButton = cardsElement.querySelector(".element__button");
   const buttonDelete = cardsElement.querySelector(".element__button-delete"); 
   buttonDelete.addEventListener('click', deleteCard);
-  cardsElement.querySelector(".element__image").setAttribute("src", linkCards);
-  cardsElement.querySelector(".element__paragraph").textContent = nameCards;
+  const cardImage = cardsElement.querySelector(".element__image");
+  cardImage.setAttribute("src", linkImage);
+  const cardName = cardsElement.querySelector(".element__paragraph");
+  cardName.textContent = textCard;
+  
+  // функция открытия и закрытия popupOpenCard для карточек добавленных при загрузке
+  const cardImageLink = cardImage.getAttribute('src');
+  const cardNameText = cardName.textContent;
+  cardImage.addEventListener('click', function () {
+    openPopup(popupOpenCard);
+    popupOpenCardImage.setAttribute('src', cardImageLink)
+    popupOpenCardNameImage.textContent = cardNameText;
+  })
+  popupCloseButtonOpenCard.addEventListener("click", function () {
+    closePopup(popupOpenCard);
+  })
+
   likeButton.addEventListener('click', ButtonLikeActive);
   sectionCards.append(cardsElement);
 }
 
-function downloadFirstCards() {
+
+
+  function downloadFirstCards() {
   initialCards.forEach(function (item) {
     addCardsOnLoad(item.name, item.link);
   });
@@ -129,6 +152,23 @@ function userAddCard(evt) {
   const cardsElement = cardContent.cloneNode(true);
   const likeButton = cardsElement.querySelector(".element__button");
   const buttonDelete = cardsElement.querySelector(".element__button-delete"); 
+  
+  // функция открытия popupOpenCard для карточек добавленых пользователем
+  const cardImage = cardsElement.querySelector(".element__image");
+  cardImage.setAttribute("src", linkCards);
+  const cardName = cardsElement.querySelector(".element__paragraph");
+  cardName.textContent = nameCards;
+  const cardImageLink = cardImage.getAttribute('src');
+  const cardNameText = cardName.textContent;
+  cardImage.addEventListener('click', function () {
+    openPopup(popupOpenCard);
+    popupOpenCardImage.setAttribute('src', cardImageLink)
+    popupOpenCardNameImage.textContent = cardNameText;
+  })
+  popupCloseButtonOpenCard.addEventListener("click", function () {
+    closePopup(popupOpenCard);
+  })
+
   buttonDelete.addEventListener('click', deleteCard);
   cardsElement.querySelector(".element__image").setAttribute("src", linkCards);
   cardsElement.querySelector(".element__paragraph").textContent = nameCards;
@@ -139,10 +179,9 @@ function userAddCard(evt) {
 
 popupSaveButtonAddCard.addEventListener("click", userAddCard);
 
-// function deleteCard() {
-//   const elementCard = buttonDelete.closest('.element');
-//   elementCard.remove();
-// }
+
+
+
 
 
 
