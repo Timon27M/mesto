@@ -123,22 +123,23 @@ function addNewCard(evt) {
   const linkCards = popupInputCardLink.value;
   const newCard = createCard(nameCards, linkCards);
   sectionCards.prepend(newCard);
+  closePopup(popupAddCard);
   popupInputCardName.value = "";
   popupInputCardLink.value = "";
-  closePopup(popupAddCard);
 }
 
 // функция добавления содержимого в popupCard
 function openPopupCard(event) {
-  openPopup(popupCard);
   const getCard = event.target.closest(".element");
   const cardText = getCard.querySelector(".element__paragraph").textContent;
-
+  
   popupCardNameImage.textContent = cardText;
-
+  
   const cardImageLink = event.target.getAttribute("src");
   popupCardImage.setAttribute("src", cardImageLink);
   popupCardImage.setAttribute("alt", `Картинка ${cardText}`);
+  
+  openPopup(popupCard);
 }
 
 popupCloseButtonEditProfile.addEventListener("click", function () {
