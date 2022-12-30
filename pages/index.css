@@ -33,5 +33,5 @@
 @import url('../blocks/popup/__container-card/popup__container-card.css');
 @import url('../blocks/popup/__image/popup__image.css');
 @import url('../blocks/popup/__name-image/popup__name-image.css');
-@import url('../blocks/popup/__open-card/popup__open-card.css');
+@import url('../blocks/popup/_open-card/popup_open-card.css');
 
