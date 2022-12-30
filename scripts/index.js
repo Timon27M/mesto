@@ -10,17 +10,17 @@ const popupCloseButtonAddCard = popupAddCard.querySelector(".popup__close-button
 const popupSaveButtonAddCard = popupAddCard.querySelector(".popup__save-button_add-card");
 const popupInputCardName = popupAddCard.querySelector(".popup__input_card_name");
 const popupInputCardLink = popupAddCard.querySelector(".popup__input_card_link");
-const popupOpenCard = document.querySelector(".popup__open-card");
-const popupCloseButtonOpenCard = popupOpenCard.querySelector(".popup__close-button_open-card");
-const popupOpenCardImage = popupOpenCard.querySelector(".popup__image");
-const popupOpenCardNameImage = popupOpenCard.querySelector(".popup__name-image");
+const popupCard = document.querySelector(".popup__open-card");
+const popupCloseButtonOpenCard = popupCard.querySelector(".popup__close-button_open-card");
+const popupCardImage = popupCard.querySelector(".popup__image");
+const popupCardNameImage = popupCard.querySelector(".popup__name-image");
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const profileAddButton = profile.querySelector(".profile__add-button");
 const profileTitle = profile.querySelector(".profile__title");
 const profileSubtitle = profile.querySelector(".profile__subtitle");
 const sectionCards = document.querySelector(".elements");
-const cardTemplate = document.querySelector("#cardTemplate");
+const cardTemplate = document.querySelector("#cardTemplate").content;
 
 
 // функция открытия попапа
@@ -97,86 +97,77 @@ function likeButtonActive(event) {
 
 // функция удаления карточки
 function deleteCard(buttonDelete) {
-  const buttonDeleteTarget = buttonDelete.target;
-
-  const elementCard = buttonDeleteTarget.closest(".element");
+  const elementCard = buttonDelete.target.closest(".element");
   elementCard.remove();
 }
 
 
-// функция добавления карточек при загрузке
-function addCardsOnLoad(textCard, linkImage) {
-  const cardContent = cardTemplate.content;
-  const cardsElement = cardContent.cloneNode(true);
-  const likeButton = cardsElement.querySelector(".element__button");
-  const buttonDelete = cardsElement.querySelector(".element__button-delete"); 
-  buttonDelete.addEventListener('click', deleteCard);
-  const cardImage = cardsElement.querySelector(".element__image");
-  cardImage.setAttribute("src", linkImage);
-  const cardName = cardsElement.querySelector(".element__paragraph");
-  cardName.textContent = textCard;
+// функция добавления содержимого в popupCard 
+function openPopupCard(event) {
+  openPopup(popupCard);
+  const getCard = event.target.closest('.element');
+  const cardText = getCard.querySelector('.element__paragraph').textContent;
   
-  // функция открытия и закрытия popupOpenCard для карточек добавленных при загрузке
-  const cardImageLink = cardImage.getAttribute('src');
-  const cardNameText = cardName.textContent;
-  cardImage.addEventListener('click', function () {
-    openPopup(popupOpenCard);
-    popupOpenCardImage.setAttribute('src', cardImageLink)
-    popupOpenCardNameImage.textContent = cardNameText;
-  })
-  popupCloseButtonOpenCard.addEventListener("click", function () {
-    closePopup(popupOpenCard);
-  })
+  popupCardNameImage.textContent = cardText;
 
-  likeButton.addEventListener('click', likeButtonActive);
-  sectionCards.append(cardsElement);
+  const cardImageLink = event.target.getAttribute('src');
+  popupCardImage.setAttribute('src', cardImageLink);
+
 }
 
 
+  popupCloseButtonOpenCard.addEventListener('click', function () {
+    closePopup(popupCard);
+  })
 
+// функция создания карточки
+function createCard(textCard, linkImage) {
+  const cardsElement = cardTemplate.cloneNode(true);
+  const cardImage = cardsElement.querySelector(".element__image");
+  const cardName = cardsElement.querySelector(".element__paragraph");
+  cardImage.setAttribute("src", linkImage);
+  cardName.textContent = textCard;
+
+  const buttonDelete = cardsElement.querySelector(".element__button-delete");
+  buttonDelete.addEventListener('click', deleteCard);
+
+  const likeButton = cardsElement.querySelector(".element__button");
+  likeButton.addEventListener('click', likeButtonActive);
+
+  cardImage.addEventListener('click', openPopupCard);
+
+  return cardsElement;
+}
+
+popupCloseButtonOpenCard.addEventListener('click', function () {
+  closePopup(popupCard);
+})
+
+
+// функция добавления карточки при загруке
   function downloadFirstCards() {
   initialCards.forEach(function (item) {
-    addCardsOnLoad(item.name, item.link);
+    const cardHTML = createCard(item.name, item.link);
+    sectionCards.append(cardHTML);
   });
 }
 
 downloadFirstCards();
 
+
 // функция добавления карточки пользователем
-function addUserCard(evt) {
+function addNewCard(evt) {
   evt.preventDefault();
   const nameCards = popupInputCardName.value;
   const linkCards = popupInputCardLink.value;
-  const cardContent = cardTemplate.content;
-  const cardsElement = cardContent.cloneNode(true);
-  const likeButton = cardsElement.querySelector(".element__button");
-  const buttonDelete = cardsElement.querySelector(".element__button-delete"); 
-  
-  // функция открытия popupOpenCard для карточек добавленых пользователем
-  const cardImage = cardsElement.querySelector(".element__image");
-  cardImage.setAttribute("src", linkCards);
-  const cardName = cardsElement.querySelector(".element__paragraph");
-  cardName.textContent = nameCards;
-  const cardImageLink = cardImage.getAttribute('src');
-  const cardNameText = cardName.textContent;
-  cardImage.addEventListener('click', function () {
-    openPopup(popupOpenCard);
-    popupOpenCardImage.setAttribute('src', cardImageLink)
-    popupOpenCardNameImage.textContent = cardNameText;
-  })
-  popupCloseButtonOpenCard.addEventListener("click", function () {
-    closePopup(popupOpenCard);
-  })
-
-  buttonDelete.addEventListener('click', deleteCard);
-  cardsElement.querySelector(".element__image").setAttribute("src", linkCards);
-  cardsElement.querySelector(".element__paragraph").textContent = nameCards;
-  likeButton.addEventListener('click', likeButtonActive);
-  sectionCards.prepend(cardsElement);
+  const newCard = createCard(nameCards, linkCards);
+  console.log(newCard)
+  sectionCards.prepend(newCard);
   closePopup(popupAddCard);
 }
 
-popupSaveButtonAddCard.addEventListener("click", addUserCard);
+popupSaveButtonAddCard.addEventListener('click', addNewCard)
+
 
 
 
