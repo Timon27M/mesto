@@ -7,6 +7,6 @@
 @media screen and (max-width: 560px) {
     .popup__container-card {
         max-width: 240px;
-        height: 300px
+        height: 300px;
     }
 }
