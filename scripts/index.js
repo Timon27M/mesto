@@ -1,4 +1,5 @@
 const popup = document.querySelector(".popup");
+// const popupContainer = popup.querySelector(".popup__container");
 const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupForm = popup.querySelector(".popup__form");
 const popupInputName = popup.querySelector(".popup__input_info_name");
@@ -21,6 +22,22 @@ const profileTitle = profile.querySelector(".profile__title");
 const profileSubtitle = profile.querySelector(".profile__subtitle");
 const sectionCards = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#cardTemplate").content;
+
+  function arr() {
+  const popupArray = Array.from(document.querySelectorAll(".popup"));
+  popupArray.forEach(function (popupArrayItem) {
+    console.log(popupArrayItem);
+    if (popupArrayItem.classList.contains('popup_opened')) {
+      document.addEventListener('keydown', function (evt) {
+        if (evt.key === 'escape') {
+          closePopup(popupArrayItem);
+        }
+      })
+    }
+  });
+  };
+
+  console.log(arr());
 
 // массив с карточками добавлеными при загрузке странице
 const initialCards = [
@@ -49,6 +66,24 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
+function cancelPropagation(evt) {
+  evt.stopPropagation();
+}
+
+
+function getArrayPopup() {
+  const popupArray = Array.from(document.querySelectorAll(".popup"));
+
+  popupArray.forEach(function (popupArrayItem) {
+    const popupContainerArrayItem = popupArrayItem.querySelector(".popup__container");
+    popupContainerArrayItem.addEventListener('click', cancelPropagation);
+    popupArrayItem.addEventListener('click', function () {
+      closePopup(popupArrayItem)
+    });
+  })
+}
+console.log(getArrayPopup());
 
 // функция открытия попапа
 function openPopup(popupName) {
@@ -168,3 +203,5 @@ popupSaveButtonAddCard.addEventListener("click", addNewCard);
 popupCloseButtonOpenCard.addEventListener("click", function () {
   closePopup(popupCard);
 });
+
+
