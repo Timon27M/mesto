@@ -1,0 +1,13 @@
+.popup__input_text_error {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  max-width: 327px;
+  max-height: 30px;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: hidden;
+}
