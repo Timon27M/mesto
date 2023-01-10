@@ -41,18 +41,20 @@
           <input
             class="popup__input popup__input_info_name"
             id="input__profile_name"
-            type="email"
+            type="text"
             name="popupName"
+            required
           />
           <span class="input__profile_name-error popup__input_text_error"></span>
           <input
             class="popup__input popup__input_info_description"
             id="input__profile_description"
-            type="email"
+            type="text"
             name="popupDescription"
+            required
           />
           <span class="input__profile_description-error popup__input_text_error"></span>
-          <button class="popup__save-button " type="submit">Сохранить</button>
+          <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
         <button
           class="popup__close-button popup__close-button_edit-profile"
@@ -70,6 +72,7 @@
             type="text"
             name="popupCardName"
             placeholder="Название"
+            required
           />
           <span class="input__card_name-error popup__input_text_error"></span>
           <input
@@ -78,6 +81,7 @@
             type="url"
             name="popupCardLink"
             placeholder="Ссылка на картинку"
+            required
           />
           <span class="input__card_link-error popup__input_text_error"></span>
           <button
