@@ -240,16 +240,23 @@ function openPopupCard(event) {
   openPopup(popupCard);
 }
 
-popupCloseButtonEditProfile.addEventListener("click", function () {
-  closePopup(popupEditProfile);
-});
 
 function checkStatusButton(form) {
   const inputArray = Array.from(form.querySelectorAll('.popup__input'));
   const buttonElement = form.querySelector('.popup__save-button');
-
+  
+  inputArray.forEach(function (inputElement) {
+    hideInputError(form, inputElement);
+  })
+  
   toggleButtonState(inputArray, buttonElement);
 }
+
+
+popupCloseButtonEditProfile.addEventListener("click", function () {
+  closePopup(popupEditProfile);
+});
+
 
 profileEditButton.addEventListener("click", function () {
   openPopup(popupEditProfile);
