@@ -96,7 +96,8 @@ function hideInputError(formElement, inputElement) {
   errorElement.textContent = '';
   errorElement.classList.remove('input-error_active');
 }
-// дописать или 
+
+
 function isValid(formElement, inputElement) {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage);
@@ -144,19 +145,6 @@ function toggleButtonState(inputArray, buttonElement) {
     buttonElement.classList.remove('popup__save-button_inactive');
   };
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
