@@ -221,3 +221,4 @@ popupCloseButtonOpenCard.addEventListener("click", function () {
 });
 
 
+
