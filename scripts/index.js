@@ -133,11 +133,11 @@ function openPopupCard(event) {
   openPopup(popupCard);
 }
 
-
-function checkStatusButton(popupElement, settings) {
-  const form = popupElement.querySelector('.popup__form');
-  const inputArray = Array.from(form.querySelectorAll('.popup__input'));
-  const buttonElement = form.querySelector('.popup__save-button');
+// функция валидации формы при открытии попапа
+function validateFormOnPopupOpening(popupElement, settings) {
+  const form = popupElement.querySelector(settings.formSelector);
+  const inputArray = Array.from(form.querySelectorAll(settings.inputSelector));
+  const buttonElement = form.querySelector(settings.submitButtonSelector);
   
   inputArray.forEach(function (inputElement) {
     hideInputError(form, inputElement, settings);
@@ -158,7 +158,7 @@ profileEditButton.addEventListener("click", function () {
   openPopup(popupEditProfile);
   popupInputName.value = profileTitle.textContent;
   popupInputDescription.value = profileSubtitle.textContent;
-  checkStatusButton(popupEditProfile, objectSetting);
+  validateFormOnPopupOpening(popupEditProfile, objectSetting);
 });
 
 popupForm.addEventListener("submit", handleFormSubmit);
@@ -166,7 +166,7 @@ popupForm.addEventListener("submit", handleFormSubmit);
 // открытие и закрытие popupAddCard
 profileAddButton.addEventListener("click", function () {
   openPopup(popupAddCard);
-  checkStatusButton(popupAddCard, objectSetting);
+  validateFormOnPopupOpening(popupAddCard, objectSetting);
 });
 
 popupCloseButtonAddCard.addEventListener("click", function () {
