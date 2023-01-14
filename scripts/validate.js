@@ -1,52 +1,52 @@
-function showInputError(formElement, inputElement, errorMessage) {
+function showInputError(formElement, inputElement, errorMessage, settings) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add("popup__input_type_error");
+  inputElement.classList.add(settings.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("input-error_active");
+  errorElement.classList.add(settings.errorClass);
 }
 // функция  удаления текста ошибки
-function hideInputError(formElement, inputElement) {
+function hideInputError(formElement, inputElement, settings) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove("popup__input_type_error");
+  inputElement.classList.remove(settings.inputErrorClass);
   errorElement.textContent = "";
-  errorElement.classList.remove("input-error_active");
+  errorElement.classList.remove(settings.errorClass);
 }
 
 // функция проверки на валидность
-function isValid(formElement, inputElement) {
+function isValid(formElement, inputElement, settings) {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, settings);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, settings);
   }
 }
 
-// функция добавления открытого попапа
-function setEventListener(formElement) {
-  const inputArray = Array.from(formElement.querySelectorAll(".popup__input"));
-  const buttonElement = formElement.querySelector(".popup__save-button");
 
-  toggleButtonState(inputArray, buttonElement);
+// функция добавления открытого попапа
+function setEventListener(formElement, settings) {
+  const inputArray = Array.from(formElement.querySelectorAll(settings.inputSelector));
+  const buttonElement = formElement.querySelector(settings.submitButtonSelector);
+  toggleButtonState(inputArray, buttonElement, settings);
 
   inputArray.forEach(function (inputElement) {
     inputElement.addEventListener("input", function () {
-      isValid(formElement, inputElement);
+      isValid(formElement, inputElement, settings);
 
-      toggleButtonState(inputArray, buttonElement);
+      toggleButtonState(inputArray, buttonElement, settings);
     });
   });
 }
 
 // функция добавления форм
-function enableValidation() {
-  const FormList = Array.from(document.querySelectorAll(".popup__form"));
+function enableValidation(settings) {
+  const FormList = Array.from(document.querySelectorAll(settings.formSelector));
 
   FormList.forEach(function (formElement) {
-    setEventListener(formElement);
+    setEventListener(formElement, settings);
   });
-}
+} 
 
-enableValidation();
+
 // функция проверки на валидность формы
 function hasInvalidInput(inputArray) {
   return inputArray.some(function (inputElement) {
@@ -55,12 +55,18 @@ function hasInvalidInput(inputArray) {
 }
 
 // функция изменения состояния кнопки попапа
-function toggleButtonState(inputArray, buttonElement) {
+function toggleButtonState(inputArray, buttonElement, settings) {
   if (hasInvalidInput(inputArray)) {
-    buttonElement.classList.add("popup__save-button_inactive");
+    buttonElement.classList.add(settings.inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
   } else {
-    buttonElement.classList.remove("popup__save-button_inactive");
+    buttonElement.classList.remove(settings.inactiveButtonClass);
     buttonElement.removeAttribute('disabled', true);
   }
 }
+
+
+
+
+
+
