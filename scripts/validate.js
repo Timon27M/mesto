@@ -28,6 +28,8 @@ function setEventListener(formElement, settings) {
   const buttonElement = formElement.querySelector(settings.submitButtonSelector);
   toggleButtonState(inputArray, buttonElement, settings);
 
+
+
   inputArray.forEach(function (inputElement) {
     inputElement.addEventListener("input", function () {
       isValid(formElement, inputElement, settings);

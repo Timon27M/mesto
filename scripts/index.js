@@ -23,35 +23,33 @@ const profileSubtitle = profile.querySelector(".profile__subtitle");
 const sectionCards = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#cardTemplate").content;
 
-
 // функция закрытия попапа при нажатие на 'Escape'
 function closeByEsc(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
 }
 
 // слушатель для закрытие попапа при клике в пустоту
 popupArray.forEach(function (popupItem) {
-  popupItem.addEventListener('click', function (evt) {
-     if (evt.target.classList.contains('popup')) {
+  popupItem.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("popup")) {
       closePopup(popupItem);
-     }
-  })
-})
-
+    }
+  });
+});
 
 // функция открытия попапа
 function openPopup(popupName) {
   popupName.classList.add("popup_opened");
-  document.addEventListener('keydown', closeByEsc);
+  document.addEventListener("keydown", closeByEsc);
 }
 
 // функция закрытия попапа
 function closePopup(popupName) {
   popupName.classList.remove("popup_opened");
-  document.removeEventListener('keydown', closeByEsc);
+  document.removeEventListener("keydown", closeByEsc);
 }
 
 function handleFormSubmit(evt) {
@@ -117,38 +115,37 @@ function addNewCard(evt) {
   closePopup(popupAddCard);
   popupInputCardName.value = "";
   popupInputCardLink.value = "";
+  const button = evt.target;
+  button.classList.add("popup__save-button_inactive");
+  button.setAttribute("disabled", true);
 }
 
 // функция добавления содержимого в popupCard
 function openPopupCard(event) {
   const getCard = event.target.closest(".element");
   const cardText = getCard.querySelector(".element__paragraph").textContent;
-  
+
   popupCardNameImage.textContent = cardText;
-  
+
   const cardImageLink = event.target.getAttribute("src");
   popupCardImage.setAttribute("src", cardImageLink);
   popupCardImage.setAttribute("alt", `Картинка ${cardText}`);
-  
+
   openPopup(popupCard);
 }
 
-// функция валидации формы при открытии попапа
-function validateFormOnPopupOpening(popupElement, settings) {
-  const form = popupElement.querySelector(settings.formSelector);
-  const inputArray = Array.from(form.querySelectorAll(settings.inputSelector));
-  const buttonElement = form.querySelector(settings.submitButtonSelector);
-  
+// функция удаления текста ошибки
+function deleteErrorOnPopupOpening(popup, settings) {
+  const form = popup.querySelector(".popup__form");
+  const inputArray = Array.from(form.querySelectorAll(".popup__input"));
+
   inputArray.forEach(function (inputElement) {
     hideInputError(form, inputElement, settings);
-  })
-  
-  toggleButtonState(inputArray, buttonElement, settings);
+  });
 }
 
-//  вызов функции валидации форм
+//  вызов функции валидации форм при вводе в поле input
 enableValidation(objectSetting);
-
 
 popupCloseButtonEditProfile.addEventListener("click", function () {
   closePopup(popupEditProfile);
@@ -158,7 +155,7 @@ profileEditButton.addEventListener("click", function () {
   openPopup(popupEditProfile);
   popupInputName.value = profileTitle.textContent;
   popupInputDescription.value = profileSubtitle.textContent;
-  validateFormOnPopupOpening(popupEditProfile, objectSetting);
+  deleteErrorOnPopupOpening(popupEditProfile, objectSetting);
 });
 
 popupForm.addEventListener("submit", handleFormSubmit);
@@ -166,7 +163,9 @@ popupForm.addEventListener("submit", handleFormSubmit);
 // открытие и закрытие popupAddCard
 profileAddButton.addEventListener("click", function () {
   openPopup(popupAddCard);
-  validateFormOnPopupOpening(popupAddCard, objectSetting);
+  popupInputCardName.value = "";
+  popupInputCardLink.value = "";
+  deleteErrorOnPopupOpening(popupAddCard, objectSetting);
 });
 
 popupCloseButtonAddCard.addEventListener("click", function () {
@@ -178,8 +177,4 @@ popupSaveButtonAddCard.addEventListener("click", addNewCard);
 popupCloseButtonOpenCard.addEventListener("click", function () {
   closePopup(popupCard);
 });
-
-
-
-
 
