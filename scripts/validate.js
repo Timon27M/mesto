@@ -41,9 +41,9 @@ function setEventListener(formElement, settings) {
 
 // функция добавления форм
 function enableValidation(settings) {
-  const FormList = Array.from(document.querySelectorAll(settings.formSelector));
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
 
-  FormList.forEach(function (formElement) {
+  formList.forEach(function (formElement) {
     setEventListener(formElement, settings);
   });
 } 
@@ -65,6 +65,17 @@ function toggleButtonState(inputArray, buttonElement, settings) {
     buttonElement.classList.remove(settings.inactiveButtonClass);
     buttonElement.removeAttribute('disabled', true);
   }
+}
+
+
+// функция удаления текста ошибки
+function deleteErrorOnPopupOpening(popup, settings) {
+  const form = popup.querySelector(".popup__form");
+  const inputArray = Array.from(form.querySelectorAll(".popup__input"));
+
+  inputArray.forEach(function (inputElement) {
+    hideInputError(form, inputElement, settings);
+  });
 }
 
 

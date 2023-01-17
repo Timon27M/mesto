@@ -3,14 +3,6 @@
     border-radius: 0;
     background-color: transparent;
     color:white;
-    max-height: 562px;
-    max-width: 816px;
-    position: relative;
-}
 
-@media screen and (max-width: 560px) {
-    .popup__container-card {
-        max-width: 240px;
-        height: 300px;
-    }
+    position: relative;
 }

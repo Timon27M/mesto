@@ -1,12 +1,13 @@
 const popupArray = Array.from(document.querySelectorAll(".popup"));
 const popupEditProfile = document.querySelector(".popup_edit-profile");
-const popupForm = popupEditProfile.querySelector(".popup__form");
+const popupFormEditProfile = popupEditProfile.querySelector(".popup__form");
 const popupInputArray = Array.from(document.querySelector(".popup__input"));
 const popupInputName = popupEditProfile.querySelector(".popup__input_info_name");
 const popupInputDescription = popupEditProfile.querySelector(".popup__input_info_description");
 const popupCloseButton = popupEditProfile.querySelectorAll(".popup__close-button");
 const popupCloseButtonEditProfile = popupEditProfile.querySelector(".popup__close-button_edit-profile");
 const popupAddCard = document.querySelector(".popup_add-card");
+const popupFormAddCard = popupAddCard.querySelector(".popup__form");
 const popupCloseButtonAddCard = popupAddCard.querySelector(".popup__close-button_add-card");
 const popupSaveButtonAddCard = popupAddCard.querySelector(".popup__save-button_add-card");
 const popupInputCardName = popupAddCard.querySelector(".popup__input_card_name");
@@ -115,7 +116,7 @@ function addNewCard(evt) {
   closePopup(popupAddCard);
   popupInputCardName.value = "";
   popupInputCardLink.value = "";
-  const button = evt.target;
+  const button = evt.submitter;
   button.classList.add("popup__save-button_inactive");
   button.setAttribute("disabled", true);
 }
@@ -134,15 +135,6 @@ function openPopupCard(event) {
   openPopup(popupCard);
 }
 
-// функция удаления текста ошибки
-function deleteErrorOnPopupOpening(popup, settings) {
-  const form = popup.querySelector(".popup__form");
-  const inputArray = Array.from(form.querySelectorAll(".popup__input"));
-
-  inputArray.forEach(function (inputElement) {
-    hideInputError(form, inputElement, settings);
-  });
-}
 
 //  вызов функции валидации форм при вводе в поле input
 enableValidation(objectSetting);
@@ -158,7 +150,7 @@ profileEditButton.addEventListener("click", function () {
   deleteErrorOnPopupOpening(popupEditProfile, objectSetting);
 });
 
-popupForm.addEventListener("submit", handleFormSubmit);
+popupFormEditProfile.addEventListener("submit", handleFormSubmit);
 
 // открытие и закрытие popupAddCard
 profileAddButton.addEventListener("click", function () {
@@ -172,7 +164,7 @@ popupCloseButtonAddCard.addEventListener("click", function () {
   closePopup(popupAddCard);
 });
 
-popupSaveButtonAddCard.addEventListener("click", addNewCard);
+popupFormAddCard.addEventListener("submit", addNewCard);
 
 popupCloseButtonOpenCard.addEventListener("click", function () {
   closePopup(popupCard);
