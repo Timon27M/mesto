@@ -70,9 +70,9 @@ function toggleButtonState(inputArray, buttonElement, settings) {
 
 // функция удаления текста ошибки
 function deleteErrorOnPopupOpening(popup, settings) {
-  const form = popup.querySelector(".popup__form");
-  const inputArray = Array.from(form.querySelectorAll(".popup__input"));
-
+  const form = popup.querySelector(settings.formSelector);
+  const inputArray = Array.from(form.querySelectorAll(settings.inputSelector));
+  
   inputArray.forEach(function (inputElement) {
     hideInputError(form, inputElement, settings);
   });
