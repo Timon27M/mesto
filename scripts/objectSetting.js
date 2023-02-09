@@ -6,3 +6,4 @@ const objectSetting = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'input-error_active',
   }
+  export { objectSetting }
