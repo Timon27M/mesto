@@ -1,12 +1,13 @@
-import { initialCards } from '../scripts/cards.js'
-// import { popupCard, popupCardImage, popupCardNameImage, } from './index.js';
+
+import { openPopupCard } from './index.js';
+
 
  class Card {
-    constructor(data, temlateSelector, openPopup) {
+    constructor(data, temlateSelector) {
         this._name = data.name;
         this._image = data.link;
         this._temlateSelector = temlateSelector;
-        this._openPopup = openPopup;
+        this._openPopupCard = openPopupCard;
         }
 
     _getTemplate() {
@@ -29,15 +30,6 @@ import { initialCards } from '../scripts/cards.js'
         return this._element;
     }
     
-    // _openPopup() {
-    //     popupCard.classList.add("popup_opened");
-
-    //     popupCardImage.src = this._image;
-    //     popupCardNameImage.textContent = this._name;
-
-    //     return popupCard;
-    // }
-
     _likeButtonActive() {
         this._element.querySelector(".element__button").classList.toggle("element__button_active");
     }
@@ -47,9 +39,7 @@ import { initialCards } from '../scripts/cards.js'
     }
 
     _setEventListeners() {
-        this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._openPopup;
-        })
+        this._element.querySelector('.element__image').addEventListener('click', this._openPopupCard)
 
         this._element.querySelector(".element__button").addEventListener('click', () => {
             this._likeButtonActive();
@@ -63,14 +53,5 @@ import { initialCards } from '../scripts/cards.js'
     }
 }
 
-
-initialCards.forEach((item) => {
-    const sectionCards = document.querySelector(".elements");
-    const card = new Card(item, '.cardTemplate');
-
-    const cardElement = card.generateCard();
-
-    sectionCards.append(cardElement);
-})
 
 export { Card }
