@@ -1,9 +1,5 @@
-
-import { openPopupCard } from './index.js';
-
-
  class Card {
-    constructor(data, temlateSelector) {
+    constructor(data, temlateSelector, openPopupCard) {
         this._name = data.name;
         this._image = data.link;
         this._temlateSelector = temlateSelector;
@@ -25,6 +21,7 @@ import { openPopupCard } from './index.js';
         this._setEventListeners();
         
         this._element.querySelector('.element__image').src = this._image;
+        this._element.querySelector('.element__image').alt = `Картинка ${this._name}`;
         this._element.querySelector('.element__paragraph').textContent = this._name;
 
         return this._element;
