@@ -1,4 +1,4 @@
-import { Card } from "../scripts/card.js";
+import { Card } from "./Card.js";
 import {  FormValidator } from "./FormValidator.js";
 import { objectSetting } from "./objectSetting.js";
 import { initialCards } from "./cards.js"
@@ -32,7 +32,6 @@ function closeByEsc(evt) {
     closePopup(openedPopup);
   }
 }
-
 
 // слушатель для закрытие попапа при клике в пустоту
 popupArray.forEach(function (popupItem) {
@@ -77,9 +76,6 @@ function addNewCard(evt) {
   closePopup(popupAddCard);
   popupInputCardName.value = "";
   popupInputCardLink.value = "";
-  const button = evt.submitter;
-  button.classList.add("popup__save-button_inactive");
-  button.setAttribute("disabled", true);
 }
 
 // функция добавления содержимого в popupCard
@@ -101,23 +97,36 @@ popupCloseButtonEditProfile.addEventListener("click", function () {
   closePopup(popupEditProfile);
 });
 
-profileEditButton.addEventListener("click", function () {
+// добавление валидации форм попапа редактирования профиля
+const formValidatorProfile = new FormValidator(objectSetting, popupFormEditProfile);
+formValidatorProfile.enableValidation();
+
+// функция открытие попапа редактирования профиля
+function openPopupProfile() {
   openPopup(popupEditProfile);
+  formValidatorProfile.resetActiveError();
   popupInputName.value = profileTitle.textContent;
   popupInputDescription.value = profileSubtitle.textContent;
-  const formValidator = new FormValidator(objectSetting, popupFormEditProfile).enableValidation();
-});
+}
+
+profileEditButton.addEventListener("click", openPopupProfile);
 
 
 popupFormEditProfile.addEventListener("submit", handleFormSubmit);
 
-// открытие и закрытие popupAddCard
-profileAddButton.addEventListener("click", function () {
+// добавление фалидации форм для попапа добавления карточек
+const formValidatoAddCard = new FormValidator(objectSetting, popupFormAddCard);
+formValidatoAddCard.enableValidation();
+
+// функция открытия попапа добавления карточек
+function openPopupAddCard() {
   openPopup(popupAddCard);
+  formValidatoAddCard.resetActiveError();
   popupInputCardName.value = "";
   popupInputCardLink.value = "";
-  const formValidator = new FormValidator(objectSetting, popupFormAddCard).enableValidation();
-});
+}
+// открытие и закрытие popupAddCard
+profileAddButton.addEventListener("click", openPopupAddCard);
 
 popupCloseButtonAddCard.addEventListener("click", function () {
   closePopup(popupAddCard);
@@ -132,8 +141,7 @@ popupCloseButtonOpenCard.addEventListener("click", function () {
 
 // создание перввых карточек при загрузке
 initialCards.forEach((item) => {
-  const sectionCards = document.querySelector(".elements");
-  const card = new Card(item, '.cardTemplate');
+  const card = new Card(item, '.cardTemplate', openPopupCard);
 
   const cardElement = card.generateCard();
 
