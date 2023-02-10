@@ -45,8 +45,6 @@
         this._element.querySelector('.element__button-delete').addEventListener('click', () => {
             this._deleteCard();
         })
-
-
     }
 }
 
