@@ -147,5 +147,3 @@ initialCards.forEach((item) => {
 
   sectionCards.append(cardElement);
 })
-
-export { openPopupCard }
