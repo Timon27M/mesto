@@ -54,7 +54,7 @@ function closePopup(popupName) {
   document.removeEventListener("keydown", closeByEsc);
 }
 
-function handleFormSubmit(evt) {
+function handleFormSubmitProfile(evt) {
   evt.preventDefault();
   profileTitle.textContent = popupInputName.value;
   profileSubtitle.textContent = popupInputDescription.value;
@@ -71,7 +71,7 @@ function addNewCard(evt) {
     name: nameCards, 
     link: linkCards,
   }
-  const newCard = new Card(objCard, '.cardTemplate').generateCard();
+  const newCard = new Card(objCard, '.cardTemplate', openPopupCard).generateCard();
   sectionCards.prepend(newCard);
   closePopup(popupAddCard);
   popupInputCardName.value = "";
@@ -112,7 +112,7 @@ function openPopupProfile() {
 profileEditButton.addEventListener("click", openPopupProfile);
 
 
-popupFormEditProfile.addEventListener("submit", handleFormSubmit);
+popupFormEditProfile.addEventListener("submit", handleFormSubmitProfile);
 
 // добавление фалидации форм для попапа добавления карточек
 const formValidatoAddCard = new FormValidator(objectSetting, popupFormAddCard);
