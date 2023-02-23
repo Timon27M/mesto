@@ -1,14 +1,14 @@
  class Card {
-    constructor(data, temlateSelector, openPopupCard) {
+    constructor(data, templateSelector, openPopupCard) {
         this._name = data.name;
         this._image = data.link;
-        this._temlateSelector = temlateSelector;
+        this._templateSelector = templateSelector;
         this._openPopupCard = openPopupCard;
         }
 
     _getTemplate() {
         const cardElement = document
-        .querySelector(this._temlateSelector)
+        .querySelector(this._templateSelector)
         .content
         .querySelector('.element')
         .cloneNode(true);

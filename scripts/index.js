@@ -2,6 +2,7 @@ import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { objectSetting } from "./objectSetting.js";
 import { initialCards } from "./cards.js"
+import  Section  from "./Section.js"
 
 const popupArray = Array.from(document.querySelectorAll(".popup"));
 const popupEditProfile = document.querySelector(".popup_edit-profile");
@@ -147,3 +148,5 @@ initialCards.forEach((item) => {
 
   sectionCards.append(cardElement);
 })
+
+
