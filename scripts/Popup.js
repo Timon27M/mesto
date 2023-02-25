@@ -13,8 +13,7 @@ export default class Popup {
     }
 
     _handleEscClose(evt) {
-        if (evt.key === "Escape") {
-            console.log('help')
+        if (evt.key === "Escape" && this._popupElement.classList.contains('popup_opened')) {
             this.close();
         } 
     }
