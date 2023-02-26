@@ -28,56 +28,62 @@ formValidatorProfile.enableValidation();
 const formValidatoAddCard = new FormValidator(objectSetting, popupFormAddCard);
 formValidatoAddCard.enableValidation();
 
-
-// попап Профиля
-const popupProfileWithForm = new PopupWithForm({
-  selector: ".popup_edit-profile",
-  callback: (array) => {
-    const userInfo = new UserInfo({
-      nameSelector: ".profile__title",
-      descriptionSelector: ".profile__subtitle",
-    });
-    userInfo.setUserInfo({ name: array[0], description: array[1] });
-    popupProfileWithForm.close();
-  },
+// создание класса UserInfo
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  descriptionSelector: ".profile__subtitle",
 });
-popupProfileWithForm.setEventListeners();
 
-profileEditButton.addEventListener("click", () => {
+
+// попап профиля
+const popupProfileWithForm = new PopupWithForm({ selector: '.popup_edit-profile',
+  callback: (obj) => {
+    userInfo.setUserInfo({name: obj.popupName, description: obj.popupDescription});
+    popupProfileWithForm.close();
+  }
+    });
+    popupProfileWithForm.setEventListeners();
+
+
+    // обработчик кнопки открытия попапа редактирования профиля
+  profileEditButton.addEventListener("click", () => {
   formValidatorProfile.resetActiveError();
 
-  const userInfo = new UserInfo({
-    nameSelector: ".profile__title",
-    descriptionSelector: ".profile__subtitle",
-  });
-  popupInputName.value = userInfo.getUserInfo().name;
-  popupInputDescription.value = userInfo.getUserInfo().description;
+  const dataProfile = userInfo.getUserInfo();
+  popupInputName.value = dataProfile.name;
+  popupInputDescription.value = dataProfile.description;
 
   popupProfileWithForm.open();
 });
 
+
+const popupWithImage = new PopupWithImage(".popup_open-card");
+
+
+// функция получения карточки
+const createCard = (obj) => {
+  const newCard = new Card(
+    {
+      name: obj.name,
+      link: obj.link,
+      handleCardClick: () => {
+        const popupWithImage = new PopupWithImage(".popup_open-card");
+  
+        popupWithImage.setEventListeners();
+        popupWithImage.open({name: obj.name, link: obj.link});
+      },
+    },
+    ".cardTemplate"
+    );
+    return newCard;
+  }
 
 // создание первых карточек при загрузке
 const firstCards = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(
-        {
-          name: item.name,
-          link: item.link,
-          handleCardClick: () => {
-            const popupWithImage = new PopupWithImage(".popup_open-card", {
-              name: item.name,
-              link: item.link,
-            });
-
-            popupWithImage.setEventListeners();
-            popupWithImage.open();
-          },
-        },
-        ".cardTemplate"
-      );
+      const card = createCard(item);
 
       const cardElement = card.generateCard();
 
@@ -88,33 +94,39 @@ const firstCards = new Section(
 );
 
 firstCards.renderItems();
+      
 
 
 // попап добавления карточек
+// const popupAddCardsWithForm = new PopupWithForm({
+//   selector: ".popup_add-card",
+//   callback: (obj) => {
+//     console.log('help')
+   
+//       const cardElement = createCard(obj).generateCard();
+//       sectionCards.prepend(cardElement);
+//     popupAddCardsWithForm.close();
+  
+//   },
+// });
+// popupAddCardsWithForm.setEventListeners();
+
+// profileAddButton.addEventListener("click", () => {
+//   formValidatoAddCard.resetActiveError();
+//   popupAddCardsWithForm.open();
+// });
+
 const popupAddCardsWithForm = new PopupWithForm({
   selector: ".popup_add-card",
-  callback: (array) => {
-    const newCard = new Card(
-      {
-        name: array[0],
-        link: array[1],
-        handleCardClick: () => {
-          const popupWithImage = new PopupWithImage(".popup_open-card", {
-            name: array[0],
-            link: array[1],
-          });
-
-          popupWithImage.setEventListeners();
-          popupWithImage.open();
-        },
-      },
-      ".cardTemplate"
-    );
-
-    const cardElement = newCard.generateCard();
-    sectionCards.prepend(cardElement);
-
-    popupAddCardsWithForm.close();
+  callback: (obj) => {
+    const card = new Section({ 
+      renderer: () => {
+        const cardElement = createCard(obj).generateCard();
+console.log(obj);
+        card.addItem(cardElement);
+      }
+    }, ".elements")
+  
   },
 });
 popupAddCardsWithForm.setEventListeners();
@@ -123,3 +135,5 @@ profileAddButton.addEventListener("click", () => {
   formValidatoAddCard.resetActiveError();
   popupAddCardsWithForm.open();
 });
+
+  
