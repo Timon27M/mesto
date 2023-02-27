@@ -7,7 +7,6 @@ const popupFormAddCard = popupAddCard.querySelector(".popup__form");
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const profileAddButton = profile.querySelector(".profile__add-button");
-const sectionCards = document.querySelector(".elements");
 
 export {  
     popupFormEditProfile,
@@ -16,5 +15,4 @@ export {
     popupFormAddCard,
     profileEditButton,
     profileAddButton,
-    sectionCards,
  }

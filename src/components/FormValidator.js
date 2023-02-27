@@ -63,7 +63,6 @@ class FormValidator {
 
     
     _setEventListener() {
-        // const inputArray = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         
         this._inputArray.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
