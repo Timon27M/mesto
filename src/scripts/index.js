@@ -52,8 +52,8 @@ const popupProfileWithForm = new PopupWithForm({ selector: '.popup_edit-profile'
     const dataProfile = userInfo.getUserInfo();
     popupInputName.value = dataProfile.name;
     popupInputDescription.value = dataProfile.description;
-    
     popupProfileWithForm.open();
+    formValidatorProfile.resetActiveError();
 });
 
 
@@ -112,6 +112,7 @@ popupAddCardsWithForm.setEventListeners();
 
 profileAddButton.addEventListener("click", () => {
   popupAddCardsWithForm.open();
+  formValidatoAddCard.resetActiveError();
 });
 
   

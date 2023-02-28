@@ -77,8 +77,7 @@ class FormValidator {
 
     resetActiveError() {
         this._disableButton();
-        const inputArray = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-        inputArray.forEach((inputElement) => {
+        this._inputArray.forEach((inputElement) => {
             this._hideInputError(inputElement);
         })
     }
