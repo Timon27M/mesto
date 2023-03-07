@@ -12,7 +12,9 @@
     </header>
     <main class="content">
       <section class="profile">
-        <div class="profile__image"></div>
+        <div class="profile__image">
+          <button class="profile__avatar-button"></button>
+        </div>
 
         <div class="profile__info">
           <div class="profile__title-container">
@@ -112,6 +114,42 @@
         <p class="popup__name-image"></p>
         <button
           class="popup__close-button popup__close-button_open-card"
+          type="button"
+        ></button>
+      </div>
+    </div>
+    <div class="popup popup_avatar">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form" name="popupForm" novalidate>
+          <input type="url" class="popup__input popup__input_avatar_link" />
+          <span
+            class="popup__profile-description-error popup__text-error"
+          ></span>
+          <button
+            class="popup__save-button popup__save-button_avatar"
+            type="submit"
+          >
+            Сохранить
+          </button>
+        </form>
+        <button
+          class="popup__close-button popup__close-button_avatar"
+          type="button"
+        ></button>
+      </div>
+    </div>
+    <div class="popup popup_delete-card">
+      <div class="popup__container popup__container-delete-card">
+        <h2 class="popup__title">Вы уверены?</h2>
+          <button
+            class="popup__save-button popup__save-button_delete-card"
+            type="submit"
+          >
+            Да
+          </button>
+        <button
+          class="popup__close-button popup__close-button_delete-card"
           type="button"
         ></button>
       </div>

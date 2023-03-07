@@ -27,7 +27,7 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 })
-console.log(api.getInitialCards())
+console.log(api.getProfileInfo())
 
 
 

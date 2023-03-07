@@ -37,4 +37,6 @@
 @import url('../blocks/popup/__image/popup__image.css');
 @import url('../blocks/popup/__name-image/popup__name-image.css');
 @import url('../blocks/popup/_open-card/popup_open-card.css');
-
+@import url('../blocks/popup/__container-delete-card/popup__container-delete-card.css');
+@import url('../blocks/popup/__save-button/_delete-card/popup__save-button_delete-card.css');
+@import url('../blocks/profile/__avatar-button/profile__avatar-button.css');
