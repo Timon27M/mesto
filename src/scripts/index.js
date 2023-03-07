@@ -1,5 +1,7 @@
 import '../pages/index.css';
 
+import Api from '../components/Api.js';
+
 import Card from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { objectSetting } from "./objectSetting.js";
@@ -17,6 +19,17 @@ import {
   profileEditButton,
   profileAddButton,
 } from '../utils/constans.js'
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-61',
+  headers: {
+    authorization: '85ee4dcc-2dd3-4827-a094-52d29fa5c5eb',
+    'Content-Type': 'application/json'
+  }
+})
+console.log(api.getInitialCards())
+
+
 
 
 // добавление валидации форм попапа редактирования профиля
@@ -79,7 +92,7 @@ const createCard = (obj) => {
 // создание первых карточек при загрузке
 const addCards = new Section(
   {
-    items: initialCards,
+    // items: initialCards,
     renderer: (item) => {
       const card = createCard(item);
 
@@ -91,7 +104,13 @@ const addCards = new Section(
   ".elements"
 );
 
-addCards.renderItems();
+// addCards.renderItems();
+
+// загрузка первых карточек с сервера
+api.getInitialCards()
+.then((cards) => {
+  addCards.renderItems(cards)
+})
 
 
 
@@ -115,4 +134,3 @@ profileAddButton.addEventListener("click", () => {
   formValidatoAddCard.resetActiveError();
 });
 
-  
