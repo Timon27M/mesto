@@ -23,9 +23,71 @@ export default class Api {
     getProfileInfo() {
         return fetch(this._baseUrl + '/users/me', {
         method: 'GET',
-        headers: this._headers
+        headers: this._headers,
     })
         .then(this._checkStatus)
     }
+
+    setUserInfo(userObj) {
+        return fetch(this._baseUrl + '/users/me', {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: userObj.popupName,
+                about: userObj.popupDescription
+            })
+        }) 
+        .then(this._checkStatus)
+    }
+
+    setUserAvatar(avatarObj) {
+        return fetch(this._baseUrl + '/users/me/avatar', {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: avatarObj.popupLinkAvatar
+            })
+        })
+        .then(this._checkStatus)
+    }
+
+    addCard(cardObj) {
+        return fetch(this._baseUrl + '/cards', {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: cardObj.name,
+                link: cardObj.link
+            })
+        })
+        .then(this._checkStatus)
+    }
+
+    deleteCardApi(id) {
+        return fetch(this._baseUrl + '/cards/' + id, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+        .then(this._checkStatus)
+
+    }
+
+    likeCard(id) {
+        return fetch(this._baseUrl + '/cards/' + id + '/likes', {
+            method: "PUT",
+            headers: this._headers,
+        })
+        .then(this._checkStatus)
+    }
+
+    disLikeCard(id) {
+        return fetch(this._baseUrl + '/cards/' + id + '/likes', {
+            method: "DELETE",
+            headers: this._headers,
+        })
+        .then(this._checkStatus)
+    }
+
+
 
 }

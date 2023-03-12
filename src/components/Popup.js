@@ -25,6 +25,14 @@ export default class Popup {
         } 
     }
 
+    setLoading(isLoading, text) {
+        if (isLoading === true) {
+            document.querySelector(this._selector).querySelector('.popup__save-button').textContent = 'Сохранение...';
+        } else {
+            document.querySelector(this._selector).querySelector('.popup__save-button').textContent = text;
+        }
+    }
+
     setEventListeners() {
         this._popupElement.querySelector('.popup__close-button').addEventListener('click', () => {
             this.close();

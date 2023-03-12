@@ -12,16 +12,17 @@
     </header>
     <main class="content">
       <section class="profile">
-        <div class="profile__image">
+        <div class="profile__avatar">
+          <img class="profile__avatar-image" src="" alt="Аватар пользователя">
           <button class="profile__avatar-button"></button>
         </div>
 
         <div class="profile__info">
           <div class="profile__title-container">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button class="profile__edit-button" type="button"></button>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button class="profile__add-button" type="button"></button>
       </section>
@@ -122,9 +123,9 @@
       <div class="popup__container">
         <h2 class="popup__title">Обновить аватар</h2>
         <form class="popup__form" name="popupForm" novalidate>
-          <input type="url" class="popup__input popup__input_avatar_link" />
+          <input type="url"  id="popup__avatar-link" name="popupLinkAvatar" class="popup__input popup__input_avatar_link" />
           <span
-            class="popup__profile-description-error popup__text-error"
+            class="popup__avatar-link-error popup__text-error"
           ></span>
           <button
             class="popup__save-button popup__save-button_avatar"
@@ -141,13 +142,15 @@
     </div>
     <div class="popup popup_delete-card">
       <div class="popup__container popup__container-delete-card">
-        <h2 class="popup__title">Вы уверены?</h2>
+        <form class="popup__form popup__form-delete-card" name="popupForm" novalidate>
+          <h2 class="popup__title">Вы уверены?</h2>
           <button
-            class="popup__save-button popup__save-button_delete-card"
-            type="submit"
+          class="popup__save-button popup__save-button_delete-card"
+          type="submit"
           >
-            Да
-          </button>
+          Да
+        </button>
+      </form>
         <button
           class="popup__close-button popup__close-button_delete-card"
           type="button"
@@ -159,8 +162,11 @@
         <img class="element__image" />
         <div class="element__info">
           <h2 class="element__paragraph"></h2>
-          <button class="element__button" type="button"></button>
-        </div>
+          <div class="element__like">
+            <button class="element__button" type="button"></button>
+            <p class="element__like-number"></p>
+          </div>
+          </div>
         <button type="button" class="element__button-delete"></button>
       </article>
     </template>
