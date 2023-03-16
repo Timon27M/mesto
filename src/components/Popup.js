@@ -3,6 +3,7 @@ export default class Popup {
         this._selector = selector;
         this._popupElement = document.querySelector(selector);
         this._handleEscClose = this._handleEscClose.bind(this);
+        this._popupSaveButton = this._popupElement.querySelector('.popup__save-button');
     }
 
     
@@ -27,9 +28,9 @@ export default class Popup {
 
     setLoading(isLoading, text) {
         if (isLoading === true) {
-            this._popupElement.querySelector('.popup__save-button').textContent = 'Сохранение...';
+            this._popupSaveButton.textContent = 'Сохранение...';
         } else {
-            this._popupElement.querySelector('.popup__save-button').textContent = text;
+            this._popupSaveButton.textContent = text;
         }
     }
 
