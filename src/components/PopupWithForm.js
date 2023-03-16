@@ -7,6 +7,8 @@ export default class PopupWithForm extends Popup {
 
         this._popupInputs = this._popupElement.querySelectorAll('.popup__input');
         this._popupForm = this._popupElement.querySelector('.popup__form');
+        this._popupInputName = this._popupElement.querySelector('.popup__input_info_name');
+        this._popupInputDescription = this._popupElement.querySelector('.popup__input_info_description');
     }
 
     _getInputValues() {
@@ -25,6 +27,11 @@ export default class PopupWithForm extends Popup {
     close() {
         super.close();
         this._clearInputs();
+    }
+
+    setInputValue(obj) {
+        this._popupInputName.value = obj.name;
+        this._popupInputDescription.value = obj.description;
     }
 
     setEventListeners() {

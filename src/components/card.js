@@ -2,13 +2,11 @@ export default class Card {
   constructor(
     { data, handleCardClick, handleCardDelete, handleLikeClick },
     userId,
-    api,
     templateSelector
   ) {
     this._name = data.name;
     this._id = data._id;
     this._image = data.link;
-    this._api = api;
     this._likes = data.likes;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
@@ -46,9 +44,21 @@ export default class Card {
       }
       this._element.querySelector('.element__like-number').textContent = this._likes.length;
 
-
+     this._likeNumber = this._element.querySelector(".element__like-number");
+     this._likeButton = this._element.querySelector(".element__button");
 
     return this._element;
+  }
+
+  updateLikes(obj) {
+    this._likes = obj.likes;
+  }
+
+  isLiked() {
+    return this._likes.some((item) => {
+     return item._id === this._userId;
+    })
+
   }
 
   deleteCard() {
@@ -56,30 +66,16 @@ export default class Card {
     this._element = null;
   }
 
-  handleLikeCard() {
-    const likeNumber = this._element.querySelector(".element__like-number");
-    const likeButton = this._element.querySelector(".element__button");
-
-    if (likeButton.classList.contains("element__button_active")) {
-      this._api.disLikeCard(this._id)
-      .then((res) => {
-        likeButton.classList.remove("element__button_active");
-        likeNumber.textContent = res.likes.length;
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      })
-    } else {
-      this._api.likeCard(this._id)
-      .then((res) => {
-        likeButton.classList.add("element__button_active");
-        likeNumber.textContent = res.likes.length;
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      })
-    }
+  changeDisLike(obj) {
+    this._likeButton.classList.remove("element__button_active");
+    this._likeNumber.textContent = obj.likes.length;
   }
+
+  changeLike(obj) {
+    this._likeButton.classList.add("element__button_active");
+    this._likeNumber.textContent = obj.likes.length;
+  }
+
 
   _setEventListeners() {
     this._element
@@ -94,7 +90,7 @@ export default class Card {
     this._element
       .querySelector(".element__button")
       .addEventListener("click", () => {
-        this.handleLikeCard();
+        this._handleLikeClick(this._element)
       });
 
     this._element

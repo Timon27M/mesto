@@ -36,12 +36,18 @@ const api = new Api({
 
 let userId;
 
+// создание класса UserInfo
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  descriptionSelector: ".profile__subtitle",
+  avatarSelector: ".profile__avatar-image"
+});
+
 // загрузка данных профиля при открытии страницы
 api.getProfileInfo()
 .then((data) => {
-  profileTitle.textContent = data.name;
-  profileSubtitle.textContent = data.about;
-  profileAvatarImage.src = data.avatar;
+  userInfo.setUserInfo({name: data.name, about: data.about});
+  userInfo.setUserAvatar({avatar: data.avatar});
 })
 .catch((err) => {
   console.log(err); // выведем ошибку в консоль
@@ -61,14 +67,6 @@ formValidatorAvatar.enableValidation();
 
 const popupDeleteCard = new PopupDeleteCard({selector: '.popup_delete-card'});
 popupDeleteCard.setEventListeners();
-
-
-// создание класса UserInfo
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  descriptionSelector: ".profile__subtitle",
-  avatarSelector: ".profile__avatar-image"
-});
 
 
 // создание попапа изменения аввтара
@@ -93,7 +91,8 @@ const popupAvatarWithForm = new PopupWithForm({selector: '.popup_avatar',
   popupAvatarWithForm.setEventListeners();
 
 profileAvatarButton.addEventListener('click', () => {
-  popupAvatarWithForm.open()
+  popupAvatarWithForm.open();
+  formValidatorAvatar.resetActiveError();
 })
 
 
@@ -119,17 +118,10 @@ const popupProfileWithForm = new PopupWithForm({ selector: '.popup_edit-profile'
 
     // обработчик кнопки открытия попапа редактирования профиля
   profileEditButton.addEventListener("click", () => {
-    api.getProfileInfo()
-    .then((data) => {
-      popupInputName.value = data.name;
-      popupInputDescription.value = data.about;
-      popupProfileWithForm.open();
-      formValidatorProfile.resetActiveError();
-    }
-    )
-    .catch((err) => {
-      console.log(err); // выведем ошибку в консоль
-    })
+    const data = userInfo.getUserInfo();
+    popupProfileWithForm.setInputValue(data)
+    popupProfileWithForm.open();
+    formValidatorProfile.resetActiveError();
 });
 
 // создание попапа с картинкой
@@ -151,6 +143,7 @@ const createCard = (obj) => {
           api.deleteCardApi(obj._id)
           .then(() => {
             newCard.deleteCard();
+            popupDeleteCard.close();
           })
           .catch((err) => {
             console.log(err); // выведем ошибку в консоль
@@ -162,11 +155,28 @@ const createCard = (obj) => {
         })
       },
       handleLikeClick: () => {
-        card.handleLikeCard()
+        if (!newCard.isLiked()) {
+        api.likeCard(obj._id)
+        .then((res) => {
+          newCard.updateLikes(res);
+          newCard.changeLike(res)
+        }) 
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        })
+      } else {
+        api.disLikeCard(obj._id)
+        .then((res) => {
+          newCard.updateLikes(res);
+          newCard.changeDisLike(res)
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        })
+      }
       }
     },
     userId,
-    api,
     ".cardTemplate"
     );
     return newCard;

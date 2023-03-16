@@ -27,9 +27,9 @@ export default class Popup {
 
     setLoading(isLoading, text) {
         if (isLoading === true) {
-            document.querySelector(this._selector).querySelector('.popup__save-button').textContent = 'Сохранение...';
+            this._popupElement.querySelector('.popup__save-button').textContent = 'Сохранение...';
         } else {
-            document.querySelector(this._selector).querySelector('.popup__save-button').textContent = text;
+            this._popupElement.querySelector('.popup__save-button').textContent = text;
         }
     }
 
