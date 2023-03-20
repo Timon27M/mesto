@@ -11,6 +11,9 @@
 * Grid Layout
 * Flexbox
 * адаптивная верстка
+* API
+* Webpack
+* ООП
 
 
 
