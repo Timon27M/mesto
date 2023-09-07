@@ -1,7 +1,7 @@
 # Проект: Место 
 ### Проект выполнен на чистом JavaScript (без использования фреймворков)
 
- - [Ссылка на сайт](https://timon27m.github.io/mesto/)
+[Ссылка на сайт](https://timon27m.github.io/mesto/)
 
 
 
